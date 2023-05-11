@@ -18,7 +18,10 @@ public class PersonController {
     public String getPersonInfo(@RequestParam("number") Integer number) {
         try {
             return personService.getPerson(number);
-        } catch (BadPersonNumberException e) {
+      //  } catch (BadPersonNumberException e) {
+      //      return "Попробуйте другой номер";
+        } catch (Exception e) {
+            e.printStackTrace();
             return "Попробуйте другой номер";
         }
     }
