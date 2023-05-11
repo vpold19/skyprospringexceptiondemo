@@ -26,8 +26,10 @@ public class PersonServiceImpl implements PersonService{
     public String getPerson(Integer number){
         final Person person;
         if(number>= persons.length){
-            throw new BadPersonNumberException("Ошибка в том, что номер человека заведома больше размера массива,");
+            return null;
         }
+       //     throw new BadPersonNumberException("Ошибка в том, что номер человека заведома больше размера массива,");
+     //   }
             person = persons[number];
         final String personDescription = " "
                 + person.getName() + " "

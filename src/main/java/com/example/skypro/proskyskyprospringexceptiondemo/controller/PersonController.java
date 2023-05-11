@@ -17,9 +17,12 @@ public class PersonController {
     @GetMapping(path = "/person")
     public String getPersonInfo(@RequestParam("number") Integer number) {
         try {
-            return personService.getPerson(number);
-      //  } catch (BadPersonNumberException e) {
-      //      return "Попробуйте другой номер";
+            final String person = personService.getPerson(number);
+            if (person == null) {
+                return "Попробуйте другой номер";
+            }
+            // } catch (BadPersonNumberException e) {
+            //    return "Попробуйте другой номер";
         } catch (Exception e) {
             e.printStackTrace();
             return "Попробуйте другой номер";
