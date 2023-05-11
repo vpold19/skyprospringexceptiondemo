@@ -5,7 +5,7 @@ import com.example.skypro.proskyskyprospringexceptiondemo.domain.TruckDriver;
 
 public class PolymorphismExample {
     public static void main(String[] args) {
-        Driver driver = new TruckDriver("Osky", "Castro", "123", "2345");
+        Driver driver = new TruckDriver("Osky", "Castro", "123", "2345", 1);
         driver.setDriverLicenseNumber("1234");
         System.out.println("driver.getDriverLicenseNumber = " + driver.getDriverLicenseNumber());
         driver.setDriverLicenseNumber("2567");

@@ -1,8 +1,8 @@
 package com.example.skypro.proskyskyprospringexceptiondemo.domain;
 
 public class TruckDriver extends Driver {
-    public TruckDriver(String name, String surname, String passport, String driverLicenseNumber) {
-        super(name, surname, passport, driverLicenseNumber);
+    public TruckDriver(String name, String surname, String passport, String driverLicenseNumber, int professionNumber) {
+        super(name, surname, passport, driverLicenseNumber, professionNumber);
     }
 
     @Override
