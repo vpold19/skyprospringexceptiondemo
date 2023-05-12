@@ -21,6 +21,7 @@ public class PersonController {
             if (person == null) {
                 return "Попробуйте другой номер";
             }
+            return person;
             // } catch (BadPersonNumberException e) {
             //    return "Попробуйте другой номер";
         } catch (Exception e) {
