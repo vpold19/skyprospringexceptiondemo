@@ -7,8 +7,8 @@ import com.example.skypro.proskyskyprospringexceptiondemo.exceptions.BadPersonNu
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonServiceImpl implements PersonService{
-    Person [] persons = {
+public class PersonServiceImpl implements PersonService {
+    Person[] persons = {
             new Person("Жан", "Рено", "12345", 2),
             new Person("Люк", "Бессон", "54321", 3),
             new Person("Жерар", "Депардье", "41232", 0),
@@ -22,20 +22,20 @@ public class PersonServiceImpl implements PersonService{
             "Столяр",
 
     };
+
     @Override
-    public String getPerson(Integer number){
+    public String getPerson(Integer number) throws BadPersonNumberException {
         final Person person;
-        if(number>= persons.length){
-            return null;
+        if (number >= persons.length) {
+
+            throw new BadPersonNumberException("Ошибка в том, что номер человека заведома больше размера массива,");
         }
-       //     throw new BadPersonNumberException("Ошибка в том, что номер человека заведома больше размера массива,");
-     //   }
-            person = persons[number];
+        person = persons[number];
         final String personDescription = " "
                 + person.getName() + " "
                 + person.getSurname() + " "
-                +person.getPassport() + " "
-                +professions[person.getProfessionNumber()];
+                + person.getPassport() + " "
+                + professions[person.getProfessionNumber()];
         return personDescription;
     }
 }

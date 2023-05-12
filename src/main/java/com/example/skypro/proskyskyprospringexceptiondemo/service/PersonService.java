@@ -1,6 +1,8 @@
 package com.example.skypro.proskyskyprospringexceptiondemo.service;
 
-public interface PersonService {
+import com.example.skypro.proskyskyprospringexceptiondemo.exceptions.BadPersonNumberException;
 
-    String getPerson(Integer number);
+public interface PersonService  {
+
+    String getPerson(Integer number) throws BadPersonNumberException;
 }
