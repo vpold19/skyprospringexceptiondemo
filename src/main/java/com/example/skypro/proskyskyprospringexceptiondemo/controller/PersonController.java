@@ -1,5 +1,6 @@
 package com.example.skypro.proskyskyprospringexceptiondemo.controller;
 
+import com.example.skypro.proskyskyprospringexceptiondemo.domain.Person;
 import com.example.skypro.proskyskyprospringexceptiondemo.exceptions.BadPersonNumberException;
 import com.example.skypro.proskyskyprospringexceptiondemo.service.PersonService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,5 +20,20 @@ public class PersonController {
         final String person;
         person = personService.getPerson(number);
         return person;
+    }
+
+    @GetMapping(path = "/person/add")
+    public String addPerson(@RequestParam("name") String name,
+                            @RequestParam("surname") String surname,
+                            @RequestParam("passport") String passport,
+                            @RequestParam("profession") Integer profession) {
+       Person person = new Person(
+               name,
+               surname,
+               passport,
+               profession
+       );
+        personService.addPerson(person);
+        return "Person added ";
     }
 }

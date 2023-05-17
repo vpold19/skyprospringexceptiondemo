@@ -6,23 +6,24 @@ import com.example.skypro.proskyskyprospringexceptiondemo.domain.TruckDriver;
 import com.example.skypro.proskyskyprospringexceptiondemo.exceptions.BadPersonNumberException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PersonServiceImpl implements PersonService {
-    List<Person> persons = List.of(
+    List<Person> persons = new ArrayList<>(List.of(
             new Person("Жан", "Рено", "12345", 2),
             new Person("Люк", "Бессон", "54321", 3),
             new Person("Жерар", "Депардье", "41232", 0),
             new Driver("Джейсон", "Стетхом", "928374", "3491", 2),
             new TruckDriver("Роберт", "Патрик", "1000", "2345", 1)
-    );
-    List<String> professions = List.of(
+    ));
+    List<String> professions = new ArrayList<>(List.of(
             "Безработный",
             "Водитель",
             "Плотник",
             "Столяр"
-            );
+    ));
 
     @Override
     public String getPerson(Integer number) throws BadPersonNumberException {
@@ -38,5 +39,10 @@ public class PersonServiceImpl implements PersonService {
                 + person.getPassport() + " "
                 + professions.get(person.getProfessionNumber());
         return personDescription;
+    }
+
+    @Override
+    public void addPerson(Person person) {
+        persons.add(person);
     }
 }
