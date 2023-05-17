@@ -1,6 +1,6 @@
 package com.example.skypro.proskyskyprospringexceptiondemo.exceptions;
 
-public class BadPersonNumberException extends Exception{
+public class BadPersonNumberException extends RuntimeException{
     public BadPersonNumberException() {
     }
 
