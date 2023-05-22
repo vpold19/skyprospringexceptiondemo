@@ -1,39 +1,49 @@
 package com.example.skypro.proskyskyprospringexceptiondemo.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ArrayListExample {
     public static void main(String[] args) {
         //Объявление массива и листа
         Integer[] numbersArray = {1, 2, 3,};
         List<Integer> numbersList = new ArrayList<>(Arrays.asList(69, 2, 3, 4)); //1)List<Integer> numbersList = List.of(69, 2, 3,4);2)List<Integer> numbersList = new ArrayList<>(List.of(69, 2, 3,4)) добавили new ArrayList<>(),чтобы можно применять изменения
+        Map<String,Integer> numbersMap = new HashMap<>(Map.of("four",4,"five",5));
+        Map<String,Integer> numbers1Map = Map.of("eleven", 11,"twelve",12);
+        numbersMap.put("two", 2);
 
         //Получение значения элемента
-        /*numbersArray[0];*/ numbersList.get(0);
-        System.out.println(numbersArray[0]); System.out.println(numbersList.get(0));
+        /*numbersArray[0];*/ numbersList.get(0); numbersMap.get("two");
+        //System.out.println(numbersArray[0]); System.out.println(numbersList.get(0));
 
         System.out.println();
 
         //Запись значения элемента
         numbersArray[1] = 10;
         numbersList.set(1, 22);
+        numbersMap.put("one", 1);
 
 
         //Получения размера
         System.out.println(numbersArray.length);
         System.out.println(numbersList.size());
+        System.out.println(numbersMap.size());
 
         System.out.println();
 
         //Получение строки с содержимым коллекции
         System.out.println(Arrays.toString(numbersArray));
-        System.out.println(numbersList);
+        System.out.println(numbersList);//numbersList.toString();
+        System.out.println(numbersMap); //numbersMap.toString();
 
         System.out.println();
 
-        /*-----------------*/ ; numbersList.add(56);
+        /*Добавление*/
+        /*-----------------*/ ; numbersList.add(56);numbersMap.put("three", 3);
+
+
         System.out.println(numbersList);
+
+
+        System.out.println(numbersMap);
     }
 }

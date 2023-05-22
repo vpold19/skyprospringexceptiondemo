@@ -7,15 +7,22 @@ import com.example.skypro.proskyskyprospringexceptiondemo.exceptions.BadPersonNu
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PersonServiceImpl implements PersonService {
-    List<Person> persons = new ArrayList<>(List.of(
+    Map<String, Person> persons = new HashMap<>(Map.of(
+            "12345",
             new Person("Жан", "Рено", "12345", 2),
+            "54321",
             new Person("Люк", "Бессон", "54321", 3),
+            "41232 ",
             new Person("Жерар", "Депардье", "41232", 0),
+            "928374",
             new Driver("Джейсон", "Стетхом", "928374", "3491", 2),
+            "1000 ",
             new TruckDriver("Роберт", "Патрик", "1000", "2345", 1)
     ));
     List<String> professions = new ArrayList<>(List.of(
@@ -25,39 +32,23 @@ public class PersonServiceImpl implements PersonService {
             "Столяр"
     ));
 
-    @Override
-    public String getPerson(Integer number) throws BadPersonNumberException {
-        final Person person;
-        if (number >= persons.size()) {
 
-            throw new BadPersonNumberException("Ошибка в том, что номер человека заведома больше размера массива,");
+    @Override
+    public void addPerson(Person person) {
+        persons.put(person.getPassport(), person);
+    }
+
+    @Override
+    public String getPersonByPassport(String passport) {
+        Person person = persons.get(passport);
+        if (person == null) {
+            throw new RuntimeException("Человек с таким номером паспорта не найден ");
         }
-        person = persons.get(number);
         final String personDescription = " "
                 + person.getName() + " "
                 + person.getSurname() + " "
                 + person.getPassport() + " "
                 + professions.get(person.getProfessionNumber());
         return personDescription;
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        persons.add(person);
-    }
-
-    @Override
-    public String getPersonByPassport(String passport) {
-        for (Person person : persons) {
-            if (person.getPassport().equals(passport)) {
-                final String personDescription = " "
-                        + person.getName() + " "
-                        + person.getSurname() + " "
-                        + person.getPassport() + " "
-                        + professions.get(person.getProfessionNumber());
-                return personDescription;
-            }
-        }
-        throw new RuntimeException("Человек с таким номером паспорта не найден ");
     }
 }
