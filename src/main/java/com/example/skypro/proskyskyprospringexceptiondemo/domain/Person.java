@@ -1,24 +1,29 @@
 package com.example.skypro.proskyskyprospringexceptiondemo.domain;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Person {
     private String name;
     private String surname;
     private String passport;
-    private int professionNumber;
+    private Set<Integer> professionNumbers;
 
     public Person(String name, String surname, String passport, int professionNumber) {
         this.name = name;
         this.surname = surname;
         this.passport = passport;
-        this.professionNumber = professionNumber;
+        this.professionNumbers = new HashSet<>(List.of(professionNumber));
     }
 
     public String getName() {
         return name;
     }
 
-    public int getProfessionNumber() {
-        return professionNumber;
+    public Set<Integer> getProfessionNumbers() {
+        return professionNumbers;
     }
 
     public void setName(String name) {

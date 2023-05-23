@@ -3,13 +3,9 @@ package com.example.skypro.proskyskyprospringexceptiondemo.service;
 import com.example.skypro.proskyskyprospringexceptiondemo.domain.Driver;
 import com.example.skypro.proskyskyprospringexceptiondemo.domain.Person;
 import com.example.skypro.proskyskyprospringexceptiondemo.domain.TruckDriver;
-import com.example.skypro.proskyskyprospringexceptiondemo.exceptions.BadPersonNumberException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -25,17 +21,27 @@ public class PersonServiceImpl implements PersonService {
             "1000 ",
             new TruckDriver("Роберт", "Патрик", "1000", "2345", 1)
     ));
-    List<String> professions = new ArrayList<>(List.of(
+    List<String> professions = new ArrayList<>(Arrays.asList(
             "Безработный",
             "Водитель",
             "Плотник",
-            "Столяр"
+            "Столяр",
+            "Актер"
     ));
 
 
     @Override
     public void addPerson(Person person) {
         persons.put(person.getPassport(), person);
+    }
+
+    @Override
+    public void addProfession(String passport, Integer profession) {
+        Person person = persons.get(passport);
+        if (person == null) {
+            throw new RuntimeException("Человек с таким номером паспорта не найден ");
+        }
+        person.getProfessionNumbers().add(profession);
     }
 
     @Override
@@ -48,7 +54,15 @@ public class PersonServiceImpl implements PersonService {
                 + person.getName() + " "
                 + person.getSurname() + " "
                 + person.getPassport() + " "
-                + professions.get(person.getProfessionNumber());
+                + getProfessionNames(person.getProfessionNumbers());
         return personDescription;
+    }
+
+    private String getProfessionNames(Set<Integer> professionNumbers) {
+        String result = " ";
+        for (Integer professionNumber : professionNumbers) {
+            result = result + " " + professions.get(professionNumber);
+        }
+        return result;
     }
 }
