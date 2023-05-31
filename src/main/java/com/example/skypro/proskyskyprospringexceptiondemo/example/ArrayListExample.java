@@ -11,6 +11,9 @@ public class ArrayListExample {
         Map<String,Integer> numbers1Map = Map.of("eleven", 11,"twelve",12);
         numbersMap.put("two", 2);
         Set<Integer> numbersSet = new HashSet<>(List.of(1,2,40,12));
+        Map<String, String> phoneBook = new HashMap<>();
+        phoneBook.put("Vadim", " 1234567");
+        System.out.println(phoneBook.get("Vadim"));
 
         //Получение значения элемента
         /*numbersArray[0];*/ numbersList.get(0); numbersMap.get("two"); /*----------*/
@@ -54,5 +57,6 @@ public class ArrayListExample {
 
 
         System.out.println(numbersSet);
+        System.out.println(phoneBook);
     }
 }

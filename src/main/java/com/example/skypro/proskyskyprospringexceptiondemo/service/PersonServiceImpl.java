@@ -29,6 +29,26 @@ public class PersonServiceImpl implements PersonService {
             "Актер"
     ));
 
+    public List<Person> getPersonByProfession(Integer professionNumber) {
+        List<Person> result = new ArrayList<>();
+        for (Person person : persons.values()) {
+            if (person.getProfessionNumbers().contains(professionNumber)) {
+                result.add(person);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<Person> getPersonByProfessions(List<Integer> professionNumbers) {
+        List<Person> result = new ArrayList<>();
+        for (Person person : persons.values()) {
+            if (person.getProfessionNumbers().containsAll(professionNumbers)) {
+                result.add(person);
+            }
+        }
+        return result;
+    }
 
     @Override
     public void addPerson(Person person) {
