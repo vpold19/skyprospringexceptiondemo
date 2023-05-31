@@ -28,6 +28,13 @@ public class PersonServiceImpl implements PersonService {
             "Столяр",
             "Актер"
     ));
+    Map<String, Integer> professionsCode = new HashMap<>(Map.of(
+            "Безработный", 0,
+            "Водитель", 1,
+            "Плотник", 2,
+            "Столяр", 3,
+            "Актер", 4
+    ));
 
     public List<Person> getPersonByProfession(Integer professionNumber) {
         List<Person> result = new ArrayList<>();
