@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class PersonController {
@@ -53,10 +54,15 @@ public class PersonController {
     public String getByProfession(@RequestParam("profession") int profession) {
         List<Person> personsByProfession = personService.getPersonByProfession(profession);
         List<String> passports = new ArrayList<>();
-        for (Person person : personsByProfession) {
-            passports.add(person.getPassport());
-        }
-        return passports.toString();
+        // for (final Person person : personsByProfession) {
+        //     passports.add(person.getPassport());
+        // }
+        List<String> streamPassports = personsByProfession.stream().
+                map(e -> e.getPassport()) // e == person
+                .map(passport -> "your passport = " + passport + " bitch")
+                .collect(Collectors.toList());
+
+        return streamPassports.toString();
     }
 }
 
