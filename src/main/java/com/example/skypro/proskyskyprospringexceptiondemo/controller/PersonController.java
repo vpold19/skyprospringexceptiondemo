@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,7 +48,15 @@ public class PersonController {
         personService.addPerson(person);
         return "Person added ";
     }
-    public void getByProfessions(){
-        personService.getPersonByProfessions(List.of(1,3));
+
+    @GetMapping(path = "/persons/by-profession")
+    public String getByProfession(@RequestParam("profession") int profession) {
+        List<Person> personsByProfession = personService.getPersonByProfession(profession);
+        List<String> passports = new ArrayList<>();
+        for (Person person : personsByProfession) {
+            passports.add(person.getPassport());
+        }
+        return passports.toString();
     }
 }
+
